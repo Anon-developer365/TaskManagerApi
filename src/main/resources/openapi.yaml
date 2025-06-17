@@ -1,0 +1,83 @@
+openapi: 3.0.4
+info:
+  title: Task Management System - OpenAPI 3.0
+  version: 1.0.0
+  description: |-
+    This is a task management system, allowing users to create, update and retrieve user files.
+    version: 1.0.0
+  servers:
+    - url: https://dev.reform.hmcts.gov.uk/taskmanagmentsystem
+  security:
+    - BasicAuth: [ ]
+  tags:
+    - name: Task Management System
+  paths:
+    /task:
+      get:
+        tags:
+          - Task Management System
+        summary: Retrieve the details of a task.
+        operationId: getTask
+        parameters:
+          - name: id
+            in: header
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Task'
+          '400':
+            description: Invalid input
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ErrorResponse"
+          '422':
+            description: Validation exception
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ErrorResponse"
+          default:
+            description: Unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ErrorResponse"
+  components:
+    schemas:
+      Task:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+            example: 10
+            description: Id of the task to be updated.
+          title:
+            type: string
+          taskDescription:
+            type: string
+            nullable: true
+          status:
+            type: string
+          dueDate:
+            type: string
+            format: date-time
+      ErrorResponse:
+        type: object
+        properties:
+          date:
+            type: string
+            format: date-time
+          description:
+            type: string
+    securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
