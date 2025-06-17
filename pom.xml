@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>org.example</groupId>
     <artifactId>TaskManagerApi</artifactId>
@@ -47,11 +47,16 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.2</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
@@ -67,13 +72,9 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>3.0.57</version>
                 <executions>
                     <execution>
                         <goals>
@@ -88,20 +89,22 @@
                             <generateModelDocumentation>true</generateModelDocumentation>
                             <generateModelTests>true</generateModelTests>
                             <generateSupportingFiles>false</generateSupportingFiles>
-                            <apiPackage>TaskManagerApi.controller</apiPackage>
-                            <modelPackage>TaskManagerApi.domain</modelPackage>
+                            <apiPackage>uk.gov.hmcts.taskmanager.api.controller</apiPackage>
+                            <modelPackage>uk.gov.hmcts.taskmanager.api.domain</modelPackage>
                             <language>spring</language>
                             <output>target/generated-sources</output>
                             <!--config options -->
                             <configOptions>
                                 <dateLibrary>java21</dateLibrary>
                                 <java21>true</java21>
+                                <jakarta>true</jakarta>
                                 <delegatePattern>true</delegatePattern>
                                 <useBeanValidation>true</useBeanValidation>
                                 <performBeanValidation>true</performBeanValidation>
                                 <swaggerDocketConfig>false</swaggerDocketConfig>
                                 <useSpringBoot>true</useSpringBoot>
                             </configOptions>
+                            <configHelp>false</configHelp>
                             <library>spring-boot3</library>
                         </configuration>
                     </execution>
@@ -110,11 +113,13 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
             </plugin>
 
         </plugins>
