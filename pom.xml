@@ -35,6 +35,22 @@
             <version>${swagger.annotations.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>2.0.2</version>
@@ -57,6 +73,26 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.brsanthu</groupId>
+            <artifactId>migbase64</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -81,16 +117,16 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${swagger.file}</inputSpec>
                             <generateApis>true</generateApis>
                             <generateApiDocumentation>true</generateApiDocumentation>
                             <generateApiTests>true</generateApiTests>
                             <generateModels>true</generateModels>
                             <generateModelDocumentation>true</generateModelDocumentation>
                             <generateModelTests>true</generateModelTests>
+                            <inputSpec>src/main/resources/openapi.yaml</inputSpec>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <apiPackage>uk.gov.hmcts.taskmanager.api.controller</apiPackage>
-                            <modelPackage>uk.gov.hmcts.taskmanager.api.domain</modelPackage>
+                            <modelPackage>uk.gov.hmcts.taskmanager.domain</modelPackage>
                             <language>spring</language>
                             <output>target/generated-sources</output>
                             <!--config options -->
