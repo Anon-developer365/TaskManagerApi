@@ -49,6 +49,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /allTasks:
+    get:
+      tags:
+        - Task Management System
+      summary: Retrieve all the tasks in the management system.
+      operationId: getTasks
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     Task:
@@ -86,6 +109,14 @@ components:
             type: string
             description: Details of the error
             example: Something Bad happened
+    TaskResponse:
+      type: object
+      properties:
+        tasks:
+          type: array
+          maxItems: 999
+          items:
+            $ref: "#/components/schemas/Task"
   securitySchemes:
     BasicAuth:
      type: http
