@@ -19,7 +19,7 @@ paths:
       summary: Retrieve the details of a task.
       operationId: getTask
       parameters:
-        - name: id
+        - name: transactionId
           in: header
           required: true
           schema:
@@ -55,6 +55,12 @@ paths:
         - Task Management System
       summary: Retrieve all the tasks in the management system.
       operationId: getTasks
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -64,14 +70,18 @@ paths:
                 $ref: '#/components/schemas/TaskResponse'
         '400':
           description: Invalid input
-        '422':
-          description: Validation exception
-        default:
-          description: Unexpected error
+        '403':
+          description: Unauthorised Access
+          content: {}
+        '404':
+          description: Service Not Found
+          content: {}
+        '429':
+          description: API rate limit exceeded
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ErrorResponse"
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     Task:
