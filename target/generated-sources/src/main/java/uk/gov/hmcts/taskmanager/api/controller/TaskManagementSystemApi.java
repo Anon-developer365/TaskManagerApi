@@ -5,6 +5,7 @@
  */
 package uk.gov.hmcts.taskmanager.api.controller;
 
+import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,14 +33,22 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-18T11:55:09.564508900+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-19T12:00:16.237226+01:00[Europe/London]")
 @Validated
 public interface TaskManagementSystemApi {
 
     @Operation(summary = "Retrieve the details of a task.", description = "", security = {
         @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Task.class))) })
+        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Task.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "403", description = "Unauthorised Access"),
+        
+        @ApiResponse(responseCode = "404", description = "Service Not Found"),
+        
+        @ApiResponse(responseCode = "429", description = "API rate limit exceeded", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     @RequestMapping(value = "/task",
         produces = { "application/json" }, 
         method = RequestMethod.GET)

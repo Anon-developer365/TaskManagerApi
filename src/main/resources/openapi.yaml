@@ -31,6 +31,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Task'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: {}
+        '404':
+          description: Service Not Found
+          content: {}
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     Task:
@@ -51,6 +69,23 @@ components:
         dueDate:
           type: string
           format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        error:
+          type: string
+          description: The type of error.
+          example: Internal Error
+        message:
+          type: array
+          maxItems: 999
+          items:
+            type: string
+            description: Details of the error
+            example: Something Bad happened
   securitySchemes:
     BasicAuth:
      type: http
