@@ -5,7 +5,10 @@
  */
 package uk.gov.hmcts.taskmanager.api.controller;
 
+import uk.gov.hmcts.taskmanager.domain.CreateTaskRequest;
+import java.util.Date;
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
+import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
 import uk.gov.hmcts.taskmanager.domain.TaskResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,9 +37,34 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T11:39:43.243284200+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T12:11:19.710409+01:00[Europe/London]")
 @Validated
 public interface TaskManagementSystemApi {
+
+    @Operation(summary = "Add a new task to the task management system.", description = "", security = {
+        @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "403", description = "Unauthorised Access"),
+        
+        @ApiResponse(responseCode = "404", description = "Service Not Found"),
+        
+        @ApiResponse(responseCode = "429", description = "API rate limit exceeded", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "422", description = "Validation exception", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "200", description = "Unexpected error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+    @RequestMapping(value = "/task",
+        produces = { "application/json" }, 
+        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
+        method = RequestMethod.POST)
+    ResponseEntity<SuccessResponse> createTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+, @Parameter(in = ParameterIn.DEFAULT, description = "Create a new task in the task management system.", required=true, schema=@Schema()) @Valid @RequestBody CreateTaskRequest body
+);
+
 
     @Operation(summary = "Retrieve the details of a task.", description = "", security = {
         @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })

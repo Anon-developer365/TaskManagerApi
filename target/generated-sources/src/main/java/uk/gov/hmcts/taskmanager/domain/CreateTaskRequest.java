@@ -10,16 +10,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 /**
- * Task
+ * CreateTaskRequest
  */
 @Validated
 @jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T12:11:19.710409+01:00[Europe/London]")
 
 
-public class Task   {
-  @JsonProperty("id")
-  private Long id = null;
-
+public class CreateTaskRequest   {
   @JsonProperty("title")
   private String title = null;
 
@@ -32,27 +29,7 @@ public class Task   {
   @JsonProperty("dueDate")
   private Date dueDate = null;
 
-  public Task id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Id of the task.
-   * @return id
-   **/
-  @Schema(example = "10", description = "Id of the task.")
-      @NotNull
-
-    public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Task title(String title) {
+  public CreateTaskRequest title(String title) {
     this.title = title;
     return this;
   }
@@ -72,7 +49,7 @@ public class Task   {
     this.title = title;
   }
 
-  public Task taskDescription(String taskDescription) {
+  public CreateTaskRequest taskDescription(String taskDescription) {
     this.taskDescription = taskDescription;
     return this;
   }
@@ -91,7 +68,7 @@ public class Task   {
     this.taskDescription = taskDescription;
   }
 
-  public Task status(String status) {
+  public CreateTaskRequest status(String status) {
     this.status = status;
     return this;
   }
@@ -111,7 +88,7 @@ public class Task   {
     this.status = status;
   }
 
-  public Task dueDate(Date dueDate) {
+  public CreateTaskRequest dueDate(Date dueDate) {
     this.dueDate = dueDate;
     return this;
   }
@@ -141,25 +118,23 @@ public class Task   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Task task = (Task) o;
-    return Objects.equals(this.id, task.id) &&
-        Objects.equals(this.title, task.title) &&
-        Objects.equals(this.taskDescription, task.taskDescription) &&
-        Objects.equals(this.status, task.status) &&
-        Objects.equals(this.dueDate, task.dueDate);
+    CreateTaskRequest createTaskRequest = (CreateTaskRequest) o;
+    return Objects.equals(this.title, createTaskRequest.title) &&
+        Objects.equals(this.taskDescription, createTaskRequest.taskDescription) &&
+        Objects.equals(this.status, createTaskRequest.status) &&
+        Objects.equals(this.dueDate, createTaskRequest.dueDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, taskDescription, status, dueDate);
+    return Objects.hash(title, taskDescription, status, dueDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Task {\n");
+    sb.append("class CreateTaskRequest {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    taskDescription: ").append(toIndentedString(taskDescription)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

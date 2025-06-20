@@ -4,51 +4,62 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
-import uk.gov.hmcts.taskmanager.domain.Task;
 import org.springframework.validation.annotation.Validated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 /**
- * TaskResponse
+ * SuccessResponse
  */
 @Validated
 @jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T12:11:19.710409+01:00[Europe/London]")
 
 
-public class TaskResponse   {
-  @JsonProperty("tasks")
-  @Valid
-  private List<Task> tasks = null;
+public class SuccessResponse   {
+  @JsonProperty("id")
+  private Long id = null;
 
-  public TaskResponse tasks(List<Task> tasks) {
-    this.tasks = tasks;
-    return this;
-  }
+  @JsonProperty("message")
+  private String message = null;
 
-  public TaskResponse addTasksItem(Task tasksItem) {
-    if (this.tasks == null) {
-      this.tasks = new ArrayList<Task>();
-    }
-    this.tasks.add(tasksItem);
+  public SuccessResponse id(Long id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get tasks
-   * @return tasks
+   * Id of the task created.
+   * @return id
+   **/
+  @Schema(example = "10", description = "Id of the task created.")
+      @NotNull
+
+    public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public SuccessResponse message(String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Get message
+   * @return message
    **/
   @Schema(description = "")
       @NotNull
-    @Valid
-  @Size(max=999)   public List<Task> getTasks() {
-    return tasks;
+
+    public String getMessage() {
+    return message;
   }
 
-  public void setTasks(List<Task> tasks) {
-    this.tasks = tasks;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -60,21 +71,23 @@ public class TaskResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TaskResponse taskResponse = (TaskResponse) o;
-    return Objects.equals(this.tasks, taskResponse.tasks);
+    SuccessResponse successResponse = (SuccessResponse) o;
+    return Objects.equals(this.id, successResponse.id) &&
+        Objects.equals(this.message, successResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tasks);
+    return Objects.hash(id, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TaskResponse {\n");
+    sb.append("class SuccessResponse {\n");
     
-    sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }

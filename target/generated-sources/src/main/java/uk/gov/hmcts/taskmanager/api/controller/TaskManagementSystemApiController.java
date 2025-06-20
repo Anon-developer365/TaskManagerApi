@@ -1,6 +1,9 @@
 package uk.gov.hmcts.taskmanager.api.controller;
 
+import uk.gov.hmcts.taskmanager.domain.CreateTaskRequest;
+import java.util.Date;
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
+import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
 import uk.gov.hmcts.taskmanager.domain.TaskResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +34,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T11:39:43.243284200+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T12:11:19.710409+01:00[Europe/London]")
 @RestController
 public class TaskManagementSystemApiController implements TaskManagementSystemApi {
 
@@ -41,6 +44,12 @@ public class TaskManagementSystemApiController implements TaskManagementSystemAp
     public TaskManagementSystemApiController(TaskManagementSystemApiDelegate delegate) {
         this.delegate = delegate;
     }
+    public ResponseEntity<SuccessResponse> createTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+,@Parameter(in = ParameterIn.DEFAULT, description = "Create a new task in the task management system.", required=true, schema=@Schema()) @Valid @RequestBody CreateTaskRequest body
+) {
+        return delegate.createTask(transactionId, body);
+    }
+
     public ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 ) {
         return delegate.getTask(transactionId);
