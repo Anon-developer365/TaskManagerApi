@@ -70,6 +70,10 @@ paths:
                 $ref: '#/components/schemas/TaskResponse'
         '400':
           description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Unauthorised Access
           content: {}
@@ -91,7 +95,7 @@ components:
           type: integer
           format: int64
           example: 10
-          description: Id of the task to be updated.
+          description: Id of the task.
         title:
           type: string
         taskDescription:

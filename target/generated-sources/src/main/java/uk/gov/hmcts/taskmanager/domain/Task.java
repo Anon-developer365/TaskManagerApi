@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * Task
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-19T12:00:16.237226+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T11:39:43.243284200+01:00[Europe/London]")
 
 
 public class Task   {
@@ -38,10 +38,10 @@ public class Task   {
   }
 
   /**
-   * Id of the task to be updated.
+   * Id of the task.
    * @return id
    **/
-  @Schema(example = "10", description = "Id of the task to be updated.")
+  @Schema(example = "10", description = "Id of the task.")
       @NotNull
 
     public Long getId() {

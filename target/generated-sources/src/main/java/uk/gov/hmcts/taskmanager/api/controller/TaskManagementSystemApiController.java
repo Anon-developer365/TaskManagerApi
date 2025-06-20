@@ -2,6 +2,7 @@ package uk.gov.hmcts.taskmanager.api.controller;
 
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
+import uk.gov.hmcts.taskmanager.domain.TaskResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -30,7 +31,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-19T12:00:16.237226+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T11:39:43.243284200+01:00[Europe/London]")
 @RestController
 public class TaskManagementSystemApiController implements TaskManagementSystemApi {
 
@@ -40,9 +41,14 @@ public class TaskManagementSystemApiController implements TaskManagementSystemAp
     public TaskManagementSystemApiController(TaskManagementSystemApiDelegate delegate) {
         this.delegate = delegate;
     }
-    public ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="id", required=true) String id
+    public ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 ) {
-        return delegate.getTask(id);
+        return delegate.getTask(transactionId);
+    }
+
+    public ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+) {
+        return delegate.getTasks(transactionId);
     }
 
 }

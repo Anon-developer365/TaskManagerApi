@@ -15,7 +15,7 @@ import jakarta.validation.constraints.*;
  * ErrorResponse
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-19T12:00:16.237226+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T11:39:43.243284200+01:00[Europe/London]")
 
 
 public class ErrorResponse   {
