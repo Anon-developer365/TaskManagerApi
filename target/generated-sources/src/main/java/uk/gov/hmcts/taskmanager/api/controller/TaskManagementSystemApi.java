@@ -11,6 +11,7 @@ import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
 import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
 import uk.gov.hmcts.taskmanager.domain.TaskResponse;
+import uk.gov.hmcts.taskmanager.domain.UpdateStatusRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -37,7 +38,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T12:11:19.710409+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
 @Validated
 public interface TaskManagementSystemApi {
 
@@ -101,6 +102,31 @@ public interface TaskManagementSystemApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+);
+
+
+    @Operation(summary = "Update the status of a task.", description = "", security = {
+        @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "403", description = "Unauthorised Access"),
+        
+        @ApiResponse(responseCode = "404", description = "Service Not Found"),
+        
+        @ApiResponse(responseCode = "429", description = "API rate limit exceeded", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "422", description = "Validation exception", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "200", description = "Unexpected error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+    @RequestMapping(value = "/task",
+        produces = { "application/json" }, 
+        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
+        method = RequestMethod.PUT)
+    ResponseEntity<SuccessResponse> updateStatus(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+, @Parameter(in = ParameterIn.DEFAULT, description = "Update the status of a task.", required=true, schema=@Schema()) @Valid @RequestBody UpdateStatusRequest body
 );
 
 }

@@ -110,6 +110,67 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+    put:
+      tags:
+        - Task Management System
+      summary: Update the status of a task.
+      operationId: updateStatus
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update the status of a task.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: { }
+        '404':
+          description: Service Not Found
+          content: { }
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
   /allTasks:
     get:
@@ -215,6 +276,15 @@ components:
           example: 10
           description: Id of the task created.
         message:
+          type: string
+    UpdateStatusRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        status:
           type: string
   securitySchemes:
     BasicAuth:

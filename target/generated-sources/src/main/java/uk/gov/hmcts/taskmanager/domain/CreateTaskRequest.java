@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * CreateTaskRequest
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T12:11:19.710409+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
 
 
 public class CreateTaskRequest   {
