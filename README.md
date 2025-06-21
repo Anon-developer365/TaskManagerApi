@@ -23,3 +23,7 @@ mvn clean generate-sources
 ```
 
 This will generate the code under `target/generated-sources`
+
+## TODO
+
+- Looking at auto generating API testing to ensure code standardisation when generating from the API. 
