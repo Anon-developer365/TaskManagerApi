@@ -5,7 +5,6 @@ import java.util.Date;
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
 import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
-import uk.gov.hmcts.taskmanager.domain.TaskResponse;
 import uk.gov.hmcts.taskmanager.domain.UpdateStatusRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -22,30 +21,25 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A delegate to be called by the {@link TaskManagementSystemApiController}}.
+ * A delegate to be called by the {@link TaskApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
-public interface TaskManagementSystemApiDelegate {
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-21T18:38:18.464715700+01:00[Europe/London]")
+public interface TaskApiDelegate {
 
     /**
-     * @see TaskManagementSystemApi#createTask
+     * @see TaskApi#createTask
      */
     ResponseEntity<SuccessResponse> createTask( String  transactionId,
          CreateTaskRequest  body);
 
     /**
-     * @see TaskManagementSystemApi#getTask
+     * @see TaskApi#getTask
      */
     ResponseEntity<Task> getTask( String  transactionId);
 
     /**
-     * @see TaskManagementSystemApi#getTasks
-     */
-    ResponseEntity<TaskResponse> getTasks( String  transactionId);
-
-    /**
-     * @see TaskManagementSystemApi#updateStatus
+     * @see TaskApi#updateStatus
      */
     ResponseEntity<SuccessResponse> updateStatus( String  transactionId,
          UpdateStatusRequest  body);

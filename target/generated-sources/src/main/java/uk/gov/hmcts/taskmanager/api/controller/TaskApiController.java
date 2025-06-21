@@ -5,7 +5,6 @@ import java.util.Date;
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
 import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
-import uk.gov.hmcts.taskmanager.domain.TaskResponse;
 import uk.gov.hmcts.taskmanager.domain.UpdateStatusRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -35,14 +34,14 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-21T18:38:18.464715700+01:00[Europe/London]")
 @RestController
-public class TaskManagementSystemApiController implements TaskManagementSystemApi {
+public class TaskApiController implements TaskApi {
 
-    private final TaskManagementSystemApiDelegate delegate;
+    private final TaskApiDelegate delegate;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public TaskManagementSystemApiController(TaskManagementSystemApiDelegate delegate) {
+    public TaskApiController(TaskApiDelegate delegate) {
         this.delegate = delegate;
     }
     public ResponseEntity<SuccessResponse> createTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
@@ -54,11 +53,6 @@ public class TaskManagementSystemApiController implements TaskManagementSystemAp
     public ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 ) {
         return delegate.getTask(transactionId);
-    }
-
-    public ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
-) {
-        return delegate.getTasks(transactionId);
     }
 
     public ResponseEntity<SuccessResponse> updateStatus(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId

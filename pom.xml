@@ -60,6 +60,10 @@
             <artifactId>jackson-jaxrs-json-provider</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-base</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>${jakarta-validation-api.version}</version>
@@ -82,6 +86,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -126,14 +145,14 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generateApis>true</generateApis>
-                            <generateApiDocumentation>true</generateApiDocumentation>
-                            <generateApiTests>true</generateApiTests>
-                            <generateModels>true</generateModels>
-                            <generateModelDocumentation>true</generateModelDocumentation>
-                            <generateModelTests>true</generateModelTests>
                             <inputSpec>src/main/resources/openapi.yaml</inputSpec>
+                            <generateApis>true</generateApis>
+                            <generateModels>true</generateModels>
                             <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateModelTests>true</generateModelTests>
+                            <generateApiTests>true</generateApiTests>
+                            <generateModelDocumentation>true</generateModelDocumentation>
+                            <generateApiDocumentation>true</generateApiDocumentation>
                             <apiPackage>uk.gov.hmcts.taskmanager.api.controller</apiPackage>
                             <modelPackage>uk.gov.hmcts.taskmanager.domain</modelPackage>
                             <language>spring</language>
@@ -142,14 +161,22 @@
                             <configOptions>
                                 <dateLibrary>java21</dateLibrary>
                                 <java21>true</java21>
+                                <jakarta>true</jakarta>
+                                <generateApis>true</generateApis>
+                                <generateApiTests>true</generateApiTests>
+                                <generateModelTests>true</generateModelTests>
                                 <delegatePattern>true</delegatePattern>
                                 <useBeanValidation>true</useBeanValidation>
                                 <performBeanValidation>true</performBeanValidation>
                                 <swaggerDocketConfig>false</swaggerDocketConfig>
                                 <useSpringBoot>true</useSpringBoot>
+                                <useOas3>true</useOas3>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                                <checkDuplicatedModelName>true</checkDuplicatedModelName>
+                                <wiremock>true</wiremock>
                             </configOptions>
                             <configHelp>false</configHelp>
-                            <library>spring-boot3</library>
+                            <library>spring-boot</library>
                         </configuration>
                     </execution>
                 </executions>

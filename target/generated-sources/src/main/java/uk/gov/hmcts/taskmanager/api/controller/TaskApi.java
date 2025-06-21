@@ -10,7 +10,6 @@ import java.util.Date;
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
 import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
-import uk.gov.hmcts.taskmanager.domain.TaskResponse;
 import uk.gov.hmcts.taskmanager.domain.UpdateStatusRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,9 +37,9 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-21T18:38:18.464715700+01:00[Europe/London]")
 @Validated
-public interface TaskManagementSystemApi {
+public interface TaskApi {
 
     @Operation(summary = "Add a new task to the task management system.", description = "", security = {
         @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })
@@ -83,25 +82,6 @@ public interface TaskManagementSystemApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
-);
-
-
-    @Operation(summary = "Retrieve all the tasks in the management system.", description = "", security = {
-        @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TaskResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "403", description = "Unauthorised Access"),
-        
-        @ApiResponse(responseCode = "404", description = "Service Not Found"),
-        
-        @ApiResponse(responseCode = "429", description = "API rate limit exceeded", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    @RequestMapping(value = "/allTasks",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 );
 
 

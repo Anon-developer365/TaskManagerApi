@@ -1,6 +1,7 @@
 package uk.gov.hmcts.taskmanager.domain;
 
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,8 +16,8 @@ import jakarta.validation.constraints.*;
  * ErrorResponse
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
-
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-21T18:38:18.464715700+01:00[Europe/London]")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class ErrorResponse   {
   @JsonProperty("date")
