@@ -25,7 +25,7 @@ import java.util.Map;
  * A delegate to be called by the {@link TaskManagementSystemApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:09:27.919670600+01:00[Europe/London]")
 public interface TaskManagementSystemApiDelegate {
 
     /**
