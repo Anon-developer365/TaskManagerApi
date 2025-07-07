@@ -35,7 +35,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
 @RestController
 public class TaskManagementSystemApiController implements TaskManagementSystemApi {
 
@@ -51,9 +51,16 @@ public class TaskManagementSystemApiController implements TaskManagementSystemAp
         return delegate.createTask(transactionId, body);
     }
 
-    public ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+    public ResponseEntity<SuccessResponse> deleteTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+,@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="taskId", required=true) String taskId
 ) {
-        return delegate.getTask(transactionId);
+        return delegate.deleteTask(transactionId, taskId);
+    }
+
+    public ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+,@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="taskId", required=true) String taskId
+) {
+        return delegate.getTask(transactionId, taskId);
     }
 
     public ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId

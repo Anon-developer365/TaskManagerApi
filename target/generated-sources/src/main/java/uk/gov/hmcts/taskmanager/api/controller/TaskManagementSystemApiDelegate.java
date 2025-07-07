@@ -25,7 +25,7 @@ import java.util.Map;
  * A delegate to be called by the {@link TaskManagementSystemApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
 public interface TaskManagementSystemApiDelegate {
 
     /**
@@ -35,9 +35,16 @@ public interface TaskManagementSystemApiDelegate {
          CreateTaskRequest  body);
 
     /**
+     * @see TaskManagementSystemApi#deleteTask
+     */
+    ResponseEntity<SuccessResponse> deleteTask( String  transactionId,
+         String  taskId);
+
+    /**
      * @see TaskManagementSystemApi#getTask
      */
-    ResponseEntity<Task> getTask( String  transactionId);
+    ResponseEntity<Task> getTask( String  transactionId,
+         String  taskId);
 
     /**
      * @see TaskManagementSystemApi#getTasks

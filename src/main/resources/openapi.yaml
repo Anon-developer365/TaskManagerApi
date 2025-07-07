@@ -24,6 +24,14 @@ paths:
           required: true
           schema:
             type: string
+        - name: taskId
+          in: header
+          required: true
+          schema:
+            type: string
+            example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+            description: Unique Task ID for the created task.
+            pattern: "^[{}0-9a-zA-Z-]{1-60}$"
       responses:
         '200':
           description: Successful operation
@@ -36,7 +44,7 @@ paths:
           content:
             application/json:
               schema:
-               $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Unauthorised Access
           content: {}
@@ -171,7 +179,50 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-
+    delete:
+      tags:
+        - Task Management System
+      summary: Delete the details of a task.
+      operationId: deleteTask
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: taskId
+          in: header
+          required: true
+          schema:
+            type: string
+            example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+            description: Unique Task ID for the task to be deleted.
+            pattern: "^[{}0-9a-zA-Z-]{1-60}$"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: { }
+        '404':
+          description: Service Not Found
+          content: { }
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /allTasks:
     get:
       tags:
@@ -215,10 +266,10 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
-          example: 10
-          description: Id of the task.
+          type: string
+          example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+          description: Unique Task ID for the created task.
+          pattern: "^[{}0-9a-zA-Z-]{1-60}$"
         title:
           type: string
         taskDescription:
@@ -229,6 +280,7 @@ components:
         dueDate:
           type: string
           format: date-time
+          pattern: yyyy-MM-dd HH:ss
     ErrorResponse:
       type: object
       properties:
@@ -271,22 +323,23 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
-          example: 10
-          description: Id of the task created.
+          type: string
+          example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+          description: Unique Task ID for the created task.
+          pattern: "^[{}0-9a-zA-Z-]{1-60}$"
         message:
           type: string
     UpdateStatusRequest:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
-          example: 10
+          type: string
+          example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+          description: Unique Task ID for the created task.
+          pattern: "^[{}0-9a-zA-Z-]{1-60}$"
         status:
           type: string
   securitySchemes:
     BasicAuth:
-     type: http
-     scheme: basic
+      type: http
+      scheme: basic

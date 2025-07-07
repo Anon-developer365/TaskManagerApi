@@ -12,33 +12,33 @@ import jakarta.validation.constraints.*;
  * SuccessResponse
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-06-20T13:06:35.610180400+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
 
 
 public class SuccessResponse   {
   @JsonProperty("id")
-  private Long id = null;
+  private String id = null;
 
   @JsonProperty("message")
   private String message = null;
 
-  public SuccessResponse id(Long id) {
+  public SuccessResponse id(String id) {
     this.id = id;
     return this;
   }
 
   /**
-   * Id of the task created.
+   * Unique Task ID for the created task.
    * @return id
    **/
-  @Schema(example = "10", description = "Id of the task created.")
+  @Schema(example = "c73ce3f9-40C7-a8f6b7ae7b7fb5", description = "Unique Task ID for the created task.")
       @NotNull
 
-    public Long getId() {
+  @Pattern(regexp="^[{}0-9a-zA-Z-]{1-60}$")   public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
