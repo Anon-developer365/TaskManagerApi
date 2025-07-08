@@ -318,6 +318,7 @@ components:
           type: string
         dueDate:
           type: string
+          pattern: yyyy-MM-dd HH:ss
           format: date-time
     SuccessResponse:
       type: object

@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.Date;
+import java.time.LocalDateTime;
 import org.springframework.validation.annotation.Validated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * CreateTaskRequest
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-08T11:46:23.404774300+01:00[Europe/London]")
 
 
 public class CreateTaskRequest   {
@@ -27,7 +27,7 @@ public class CreateTaskRequest   {
   private String status = null;
 
   @JsonProperty("dueDate")
-  private Date dueDate = null;
+  private LocalDateTime dueDate = null;
 
   public CreateTaskRequest title(String title) {
     this.title = title;
@@ -88,7 +88,7 @@ public class CreateTaskRequest   {
     this.status = status;
   }
 
-  public CreateTaskRequest dueDate(Date dueDate) {
+  public CreateTaskRequest dueDate(LocalDateTime dueDate) {
     this.dueDate = dueDate;
     return this;
   }
@@ -101,11 +101,11 @@ public class CreateTaskRequest   {
       @NotNull
 
     @Valid
-    public Date getDueDate() {
+    public LocalDateTime getDueDate() {
     return dueDate;
   }
 
-  public void setDueDate(Date dueDate) {
+  public void setDueDate(LocalDateTime dueDate) {
     this.dueDate = dueDate;
   }
 

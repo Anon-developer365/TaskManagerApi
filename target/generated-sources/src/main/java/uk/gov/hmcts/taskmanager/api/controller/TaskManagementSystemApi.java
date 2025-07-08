@@ -6,8 +6,8 @@
 package uk.gov.hmcts.taskmanager.api.controller;
 
 import uk.gov.hmcts.taskmanager.domain.CreateTaskRequest;
-import java.util.Date;
 import uk.gov.hmcts.taskmanager.domain.ErrorResponse;
+import java.time.LocalDateTime;
 import uk.gov.hmcts.taskmanager.domain.SuccessResponse;
 import uk.gov.hmcts.taskmanager.domain.Task;
 import uk.gov.hmcts.taskmanager.domain.TaskResponse;
@@ -38,9 +38,11 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-08T11:46:23.404774300+01:00[Europe/London]")
 @Validated
 public interface TaskManagementSystemApi {
+
+    TaskManagementSystemApiDelegate getDelegate();
 
     @Operation(summary = "Add a new task to the task management system.", description = "", security = {
         @SecurityRequirement(name = "BasicAuth")    }, tags={ "Task Management System" })
@@ -62,9 +64,11 @@ public interface TaskManagementSystemApi {
         produces = { "application/json" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<SuccessResponse> createTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+    default ResponseEntity<SuccessResponse> createTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 , @Parameter(in = ParameterIn.DEFAULT, description = "Create a new task in the task management system.", required=true, schema=@Schema()) @Valid @RequestBody CreateTaskRequest body
-);
+) {
+        return getDelegate().createTask(transactionId, body);
+    }
 
 
     @Operation(summary = "Delete the details of a task.", description = "", security = {
@@ -82,9 +86,11 @@ public interface TaskManagementSystemApi {
     @RequestMapping(value = "/task",
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<SuccessResponse> deleteTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+    default ResponseEntity<SuccessResponse> deleteTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 , @Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="taskId", required=true) String taskId
-);
+) {
+        return getDelegate().deleteTask(transactionId, taskId);
+    }
 
 
     @Operation(summary = "Retrieve the details of a task.", description = "", security = {
@@ -102,9 +108,11 @@ public interface TaskManagementSystemApi {
     @RequestMapping(value = "/task",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+    default ResponseEntity<Task> getTask(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 , @Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="taskId", required=true) String taskId
-);
+) {
+        return getDelegate().getTask(transactionId, taskId);
+    }
 
 
     @Operation(summary = "Retrieve all the tasks in the management system.", description = "", security = {
@@ -122,8 +130,10 @@ public interface TaskManagementSystemApi {
     @RequestMapping(value = "/allTasks",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
-);
+    default ResponseEntity<TaskResponse> getTasks(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+) {
+        return getDelegate().getTasks(transactionId);
+    }
 
 
     @Operation(summary = "Update the status of a task.", description = "", security = {
@@ -146,9 +156,11 @@ public interface TaskManagementSystemApi {
         produces = { "application/json" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<SuccessResponse> updateStatus(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
+    default ResponseEntity<SuccessResponse> updateStatus(@Parameter(in = ParameterIn.HEADER, description = "" ,required=true,schema=@Schema()) @RequestHeader(value="transactionId", required=true) String transactionId
 , @Parameter(in = ParameterIn.DEFAULT, description = "Update the status of a task.", required=true, schema=@Schema()) @Valid @RequestBody UpdateStatusRequest body
-);
+) {
+        return getDelegate().updateStatus(transactionId, body);
+    }
 
 }
 

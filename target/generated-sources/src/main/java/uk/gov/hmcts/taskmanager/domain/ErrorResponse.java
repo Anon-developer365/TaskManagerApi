@@ -4,8 +4,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import jakarta.validation.Valid;
@@ -15,12 +15,12 @@ import jakarta.validation.constraints.*;
  * ErrorResponse
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-08T11:46:23.404774300+01:00[Europe/London]")
 
 
 public class ErrorResponse   {
   @JsonProperty("date")
-  private Date date = null;
+  private LocalDateTime date = null;
 
   @JsonProperty("error")
   private String error = null;
@@ -29,7 +29,7 @@ public class ErrorResponse   {
   @Valid
   private List<String> message = null;
 
-  public ErrorResponse date(Date date) {
+  public ErrorResponse date(LocalDateTime date) {
     this.date = date;
     return this;
   }
@@ -42,11 +42,11 @@ public class ErrorResponse   {
       @NotNull
 
     @Valid
-    public Date getDate() {
+    public LocalDateTime getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(LocalDateTime date) {
     this.date = date;
   }
 
@@ -77,7 +77,7 @@ public class ErrorResponse   {
 
   public ErrorResponse addMessageItem(String messageItem) {
     if (this.message == null) {
-      this.message = new ArrayList<String>();
+      this.message = new ArrayList<>();
     }
     this.message.add(messageItem);
     return this;

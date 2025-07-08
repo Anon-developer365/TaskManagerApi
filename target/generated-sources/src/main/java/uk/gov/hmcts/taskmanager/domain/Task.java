@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.Date;
+import java.time.LocalDateTime;
 import org.springframework.validation.annotation.Validated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * Task
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-07T12:08:13.061066500+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-08T11:46:23.404774300+01:00[Europe/London]")
 
 
 public class Task   {
@@ -30,7 +30,7 @@ public class Task   {
   private String status = null;
 
   @JsonProperty("dueDate")
-  private Date dueDate = null;
+  private LocalDateTime dueDate = null;
 
   public Task id(String id) {
     this.id = id;
@@ -111,7 +111,7 @@ public class Task   {
     this.status = status;
   }
 
-  public Task dueDate(Date dueDate) {
+  public Task dueDate(LocalDateTime dueDate) {
     this.dueDate = dueDate;
     return this;
   }
@@ -124,11 +124,11 @@ public class Task   {
       @NotNull
 
     @Valid
-    public Date getDueDate() {
+    public LocalDateTime getDueDate() {
     return dueDate;
   }
 
-  public void setDueDate(Date dueDate) {
+  public void setDueDate(LocalDateTime dueDate) {
     this.dueDate = dueDate;
   }
 
