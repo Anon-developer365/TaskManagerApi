@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -15,7 +13,7 @@ import jakarta.validation.constraints.*;
  * ErrorResponse
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-08T11:46:23.404774300+01:00[Europe/London]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-07-14T19:32:13.872798800+01:00[Europe/London]")
 
 
 public class ErrorResponse   {
@@ -26,8 +24,7 @@ public class ErrorResponse   {
   private String error = null;
 
   @JsonProperty("message")
-  @Valid
-  private List<String> message = null;
+  private String message = null;
 
   public ErrorResponse date(LocalDateTime date) {
     this.date = date;
@@ -70,31 +67,23 @@ public class ErrorResponse   {
     this.error = error;
   }
 
-  public ErrorResponse message(List<String> message) {
+  public ErrorResponse message(String message) {
     this.message = message;
     return this;
   }
 
-  public ErrorResponse addMessageItem(String messageItem) {
-    if (this.message == null) {
-      this.message = new ArrayList<>();
-    }
-    this.message.add(messageItem);
-    return this;
-  }
-
   /**
-   * Get message
+   * Details of the error
    * @return message
    **/
-  @Schema(description = "")
+  @Schema(example = "Something Bad happened", description = "Details of the error")
       @NotNull
 
-  @Size(max=999)   public List<String> getMessage() {
+    public String getMessage() {
     return message;
   }
 
-  public void setMessage(List<String> message) {
+  public void setMessage(String message) {
     this.message = message;
   }
 

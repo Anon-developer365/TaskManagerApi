@@ -292,12 +292,9 @@ components:
           description: The type of error.
           example: Internal Error
         message:
-          type: array
-          maxItems: 999
-          items:
-            type: string
-            description: Details of the error
-            example: Something Bad happened
+          type: string
+          description: Details of the error
+          example: Something Bad happened
     TaskResponse:
       type: object
       properties:
