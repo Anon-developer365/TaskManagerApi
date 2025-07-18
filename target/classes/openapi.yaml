@@ -1,0 +1,343 @@
+openapi: 3.0.4
+info:
+  title: Task Management System - OpenAPI 3.0
+  version: 1.0.0
+  description: |-
+    This is a task management system, allowing users to create, update and retrieve user files.
+    version: 1.0.0
+servers:
+  - url: https://dev.reform.hmcts.gov.uk/taskmanagmentsystem
+security:
+  - BasicAuth: [ ]
+tags:
+  - name: Task Management System
+paths:
+  /task:
+    get:
+      tags:
+        - Task Management System
+      summary: Retrieve the details of a task.
+      operationId: getTask
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: taskId
+          in: header
+          required: true
+          schema:
+            type: string
+            example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+            description: Unique Task ID for the created task.
+            pattern: "^[{}0-9a-zA-Z-]{1-60}$"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: {}
+        '404':
+          description: Service Not Found
+          content: {}
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Task Management System
+      summary: Add a new task to the task management system.
+      operationId: createTask
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new task in the task management system.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: { }
+        '404':
+          description: Service Not Found
+          content: { }
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      tags:
+        - Task Management System
+      summary: Update the status of a task.
+      operationId: updateStatus
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update the status of a task.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: { }
+        '404':
+          description: Service Not Found
+          content: { }
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      tags:
+        - Task Management System
+      summary: Delete the details of a task.
+      operationId: deleteTask
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: taskId
+          in: header
+          required: true
+          schema:
+            type: string
+            example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+            description: Unique Task ID for the task to be deleted.
+            pattern: "^[{}0-9a-zA-Z-]{1-60}$"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: { }
+        '404':
+          description: Service Not Found
+          content: { }
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /allTasks:
+    get:
+      tags:
+        - Task Management System
+      summary: Retrieve all the tasks in the management system.
+      operationId: getTasks
+      parameters:
+        - name: transactionId
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorised Access
+          content: {}
+        '404':
+          description: Service Not Found
+          content: {}
+        '429':
+          description: API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+          description: Unique Task ID for the created task.
+          pattern: "^[{}0-9a-zA-Z-]{1-60}$"
+        title:
+          type: string
+        taskDescription:
+          type: string
+          nullable: true
+        status:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+          pattern: yyyy-MM-dd HH:ss
+    ErrorResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        error:
+          type: string
+          description: The type of error.
+          example: Internal Error
+        message:
+          type: string
+          description: Details of the error
+          example: Something Bad happened
+    TaskResponse:
+      type: object
+      properties:
+        tasks:
+          type: array
+          maxItems: 999
+          items:
+            $ref: "#/components/schemas/Task"
+    CreateTaskRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        taskDescription:
+          type: string
+          nullable: true
+        status:
+          type: string
+        dueDate:
+          type: string
+          pattern: yyyy-MM-dd HH:ss
+          format: date-time
+    SuccessResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+          description: Unique Task ID for the created task.
+          pattern: "^[{}0-9a-zA-Z-]{1-60}$"
+        message:
+          type: string
+    UpdateStatusRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 'c73ce3f9-40C7-a8f6b7ae7b7fb5'
+          description: Unique Task ID for the created task.
+          pattern: "^[{}0-9a-zA-Z-]{1-60}$"
+        status:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

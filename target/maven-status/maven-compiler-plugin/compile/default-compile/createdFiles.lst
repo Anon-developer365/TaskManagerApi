@@ -1,0 +1,9 @@
+uk\gov\hmcts\taskmanager\domain\ErrorResponse.class
+uk\gov\hmcts\taskmanager\domain\UpdateStatusRequest.class
+uk\gov\hmcts\taskmanager\api\controller\TaskManagementSystemApiDelegate.class
+uk\gov\hmcts\taskmanager\api\controller\TaskManagementSystemApi.class
+uk\gov\hmcts\taskmanager\api\controller\TaskManagementSystemApiController.class
+uk\gov\hmcts\taskmanager\domain\Task.class
+uk\gov\hmcts\taskmanager\domain\TaskResponse.class
+uk\gov\hmcts\taskmanager\domain\CreateTaskRequest.class
+uk\gov\hmcts\taskmanager\domain\SuccessResponse.class
